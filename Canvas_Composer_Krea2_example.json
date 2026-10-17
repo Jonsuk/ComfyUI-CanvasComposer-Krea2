@@ -1,0 +1,901 @@
+{
+ "id": "5704c585-5831-4787-bd71-3e8366c15b48",
+ "revision": 0,
+ "last_node_id": 117,
+ "last_link_id": 134,
+ "nodes": [
+  {
+   "id": 75,
+   "type": "UNETLoader",
+   "pos": [
+    2815.71196810737,
+    -791.375681754339
+   ],
+   "size": [
+    331.587188959851,
+    82
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      133
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "widgets_values": [
+    "Krea2\\krea2_turbo_fp8_scaled.safetensors",
+    "default"
+   ],
+   "widgets_values_named": {
+    "unet_name": "Krea2\\krea2_turbo_fp8_scaled.safetensors",
+    "weight_dtype": "default"
+   },
+   "color": "#3e1d22",
+   "bgcolor": "#81575c"
+  },
+  {
+   "id": 77,
+   "type": "ModelAttentionBackend",
+   "pos": [
+    3178.907118495674,
+    -789.525973106481
+   ],
+   "size": [
+    351.99709366138757,
+    71.84550209556306
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 133
+    }
+   ],
+   "outputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "links": [
+      86
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ModelAttentionBackend"
+   },
+   "widgets_values": [
+    "comfy kitchen attention"
+   ],
+   "widgets_values_named": {
+    "attention": "comfy kitchen attention"
+   },
+   "color": "#1f9eb2",
+   "bgcolor": "#233639"
+  },
+  {
+   "id": 78,
+   "type": "ModelSamplingAuraFlow",
+   "pos": [
+    3180.1345137350468,
+    -674.6556837464965
+   ],
+   "size": [
+    353.8957637689077,
+    82
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 86
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      100
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ModelSamplingAuraFlow"
+   },
+   "widgets_values": [
+    3,
+    "flow"
+   ],
+   "widgets_values_named": {
+    "shift": 3,
+    "sampling": "flow"
+   },
+   "color": "#1f9eb2",
+   "bgcolor": "#233639"
+  },
+  {
+   "id": 79,
+   "type": "CLIPLoader",
+   "pos": [
+    2815.00121889126,
+    -674.6925543802092
+   ],
+   "size": [
+    331.29913380682194,
+    106
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      106,
+      117
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen3-vl-4b-heretic_fp8_e4m3fn.safetensors",
+    "krea2",
+    "default"
+   ],
+   "widgets_values_named": {
+    "clip_name": "qwen3-vl-4b-heretic_fp8_e4m3fn.safetensors",
+    "type": "krea2",
+    "device": "default"
+   },
+   "color": "#3e1d22",
+   "bgcolor": "#81575c"
+  },
+  {
+   "id": 81,
+   "type": "VAELoader",
+   "pos": [
+    2813.9320806695077,
+    -535.8397326677402
+   ],
+   "size": [
+    334.6917915579786,
+    58
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      107,
+      126,
+      128
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "krea2RealVae_v10.safetensors"
+   ],
+   "widgets_values_named": {
+    "vae_name": "krea2RealVae_v10.safetensors"
+   },
+   "color": "#3e1d22",
+   "bgcolor": "#81575c"
+  },
+  {
+   "id": 83,
+   "type": "VAEDecode",
+   "pos": [
+    4596.651427975276,
+    -140.56148330822805
+   ],
+   "size": [
+    140,
+    46
+   ],
+   "flags": {
+    "collapsed": true
+   },
+   "order": 20,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 130
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 128
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      104
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   }
+  },
+  {
+   "id": 93,
+   "type": "KSampler",
+   "pos": [
+    3927.655654433191,
+    -794.002819840238
+   ],
+   "size": [
+    560.2717951722661,
+    707.5043330799484
+   ],
+   "flags": {},
+   "order": 19,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 100
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 134
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 123
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 129
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      130
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    807960563572693,
+    "fixed",
+    12,
+    1.2,
+    "er_sde",
+    "simple",
+    1
+   ],
+   "widgets_values_named": {
+    "seed": 807960563572693,
+    "control_after_generate": "fixed",
+    "steps": 12,
+    "cfg": 1.2,
+    "sampler_name": "er_sde",
+    "scheduler": "simple",
+    "denoise": 1
+   },
+   "color": "#7eeaa9",
+   "bgcolor": "#236169"
+  },
+  {
+   "id": 95,
+   "type": "PreviewImage",
+   "pos": [
+    4513.930722977864,
+    -819.5387613308736
+   ],
+   "size": [
+    1093.5943138227426,
+    746.9460887417557
+   ],
+   "flags": {},
+   "order": 21,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 104
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PreviewImage"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {},
+   "color": "#7eeaa9",
+   "bgcolor": "#236169"
+  },
+  {
+   "id": 100,
+   "type": "TextEncodeQwenImageEditPlus",
+   "pos": [
+    3169.9507943182534,
+    -532.9793904613432
+   ],
+   "size": [
+    732.1643608207762,
+    448.8212300537366
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 106
+    },
+    {
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE",
+     "link": 107
+    },
+    {
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 122
+    },
+    {
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 131
+    },
+    {
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 132
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      134
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "widgets_values": [
+    "This is one panoramic image made of three scenes side by side. Blend them naturally into a single continuous place, with smooth, realistic transitions where they meet, while preserving each area's unique style. On the left: [describe the left scene]. [Optional: the character from image 2 appears only in this area.] In the centre: [describe the middle scene]. On the right: [describe the right scene]. [Optional: the character from image 3 appears only in this area.] The ground carries reflections and colour across all three scenes. Fill up all gaps on the image, breathtaking sense of depth and scale. Cinematic mesmerizing feeling and character. Do not transfer any other elements from the reference images."
+   ],
+   "color": "#38b21f",
+   "bgcolor": "#273923"
+  },
+  {
+   "id": 106,
+   "type": "TextEncodeQwenImageEditPlus",
+   "pos": [
+    3599.713190048199,
+    -452.89732325911433
+   ],
+   "size": [
+    269.6216796875,
+    168
+   ],
+   "flags": {
+    "collapsed": true
+   },
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 117
+    },
+    {
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE",
+     "link": null
+    },
+    {
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      123
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "widgets_values": [
+    "BORING, DULL, BLURRED, DEFORMED, LOW QUALITY, obesse anatomy, "
+   ],
+   "widgets_values_named": {
+    "prompt": "BORING, DULL, BLURRED, DEFORMED, LOW QUALITY, obesse anatomy, "
+   },
+   "color": "#332922",
+   "bgcolor": "#593930"
+  },
+  {
+   "id": 108,
+   "type": "JOnsukCanvasComposer",
+   "pos": [
+    2797.7292613972318,
+    10.833057350484651
+   ],
+   "size": [
+    567.0875837470066,
+    1055
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image_1",
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "name": "image_2",
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "name": "image_3",
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "name": "image_4",
+     "type": "IMAGE",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "links": [
+      122,
+      127
+     ]
+    },
+    {
+     "name": "covered_mask",
+     "type": "MASK",
+     "links": null
+    },
+    {
+     "name": "gap_mask",
+     "type": "MASK",
+     "links": null
+    },
+    {
+     "name": "seam_mask",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "JOnsukCanvasComposer"
+   },
+   "widgets_values": [
+    1344,
+    768,
+    "#808080",
+    "[]",
+    "",
+    32
+   ],
+   "color": "#6b904b",
+   "bgcolor": "#564d4d"
+  },
+  {
+   "id": 109,
+   "type": "VAEEncode",
+   "pos": [
+    3739.9120302548054,
+    -510.022524319863
+   ],
+   "size": [
+    266.0512365718214,
+    46
+   ],
+   "flags": {
+    "collapsed": true
+   },
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "pixels",
+     "type": "IMAGE",
+     "link": 127
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 126
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      129
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEEncode"
+   }
+  },
+  {
+   "id": 111,
+   "type": "LoadImage",
+   "pos": [
+    3387.8784258899377,
+    25.26570656917242
+   ],
+   "size": [
+    347.3918935376787,
+    606.1262346847866
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      131
+     ]
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "reference_2.png",
+    "image"
+   ]
+  },
+  {
+   "id": 112,
+   "type": "LoadImage",
+   "pos": [
+    3749.189959845489,
+    229.0989208423065
+   ],
+   "size": [
+    335.4564058833189,
+    587.6995218717501
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      132
+     ]
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "reference_3.png",
+    "image"
+   ]
+  },
+  {
+   "id": 114,
+   "type": "Note",
+   "pos": [
+    3756.0988900986713,
+    41.72496058407289
+   ],
+   "size": [
+    323.29252500415714,
+    111.88142610449813
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "properties": {},
+   "widgets_values": [
+    "Ideally upload characters with plain background, so the model won't pull unwanted elements from the image references.\n"
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 117,
+   "type": "Note",
+   "pos": [
+    3379.02111128965,
+    681.8013031182713
+   ],
+   "size": [
+    356.24229453885937,
+    155.6041254012705
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "IMPORTANT!",
+   "properties": {},
+   "widgets_values": [
+    "BE GENEROUS WITH THE FEATHERING, SPECIALLY IN THE IMAGE JOINTS."
+   ],
+   "color": "#cf2a2a",
+   "bgcolor": "#3e2525"
+  }
+ ],
+ "links": [
+  [
+   86,
+   77,
+   0,
+   78,
+   0,
+   "MODEL"
+  ],
+  [
+   100,
+   78,
+   0,
+   93,
+   0,
+   "MODEL"
+  ],
+  [
+   104,
+   83,
+   0,
+   95,
+   0,
+   "IMAGE"
+  ],
+  [
+   106,
+   79,
+   0,
+   100,
+   0,
+   "CLIP"
+  ],
+  [
+   107,
+   81,
+   0,
+   100,
+   1,
+   "VAE"
+  ],
+  [
+   117,
+   79,
+   0,
+   106,
+   0,
+   "CLIP"
+  ],
+  [
+   122,
+   108,
+   0,
+   100,
+   2,
+   "IMAGE"
+  ],
+  [
+   123,
+   106,
+   0,
+   93,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   126,
+   81,
+   0,
+   109,
+   1,
+   "VAE"
+  ],
+  [
+   127,
+   108,
+   0,
+   109,
+   0,
+   "IMAGE"
+  ],
+  [
+   128,
+   81,
+   0,
+   83,
+   1,
+   "VAE"
+  ],
+  [
+   129,
+   109,
+   0,
+   93,
+   3,
+   "LATENT"
+  ],
+  [
+   130,
+   93,
+   0,
+   83,
+   0,
+   "LATENT"
+  ],
+  [
+   131,
+   111,
+   0,
+   100,
+   3,
+   "IMAGE"
+  ],
+  [
+   132,
+   112,
+   0,
+   100,
+   4,
+   "IMAGE"
+  ],
+  [
+   133,
+   75,
+   0,
+   77,
+   0,
+   "MODEL"
+  ],
+  [
+   134,
+   100,
+   0,
+   93,
+   1,
+   "CONDITIONING"
+  ]
+ ],
+ "groups": [
+  {
+   "id": 1,
+   "title": "SET UP",
+   "bounding": [
+    2793.8921796254544,
+    -850.0023515671503,
+    1707.2736020657812,
+    780.486091385889
+   ],
+   "color": "#a1309b",
+   "flags": {}
+  },
+  {
+   "id": 2,
+   "title": "CANVAS + REFERENCES",
+   "bounding": [
+    2792.0933738440867,
+    -51.685590889547065,
+    1299.7400675873282,
+    1135.6128823195668
+   ],
+   "color": "#8A8",
+   "flags": {}
+  }
+ ],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.7972024500000068,
+   "offset": [
+    -2227.7050377806963,
+    1222.6874626773001
+   ]
+  },
+  "frontendVersion": "1.55.17"
+ },
+ "version": 0.4
+}
