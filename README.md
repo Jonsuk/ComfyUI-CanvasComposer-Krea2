@@ -109,4 +109,4 @@ Source and issues: https://github.com/Jonsuk/ComfyUI-CanvasComposer-Krea2
 
 ## Credits and licence
 
-Written with AI assistance (Claude, by Anthropic) and tested by the author. MIT licence, see `LICENSE`.
+Written and tested by the author, with assistance of (Claude, by Anthropic) . MIT licence, see `LICENSE`.
